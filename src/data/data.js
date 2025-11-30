@@ -1,4 +1,3 @@
-
 export const navLinks = [
   { id: 1, link: 'home' },
   { id: 2, link: 'about' },
