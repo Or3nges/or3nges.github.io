@@ -44,8 +44,7 @@ const About = () => {
               <p className="text-textSecondary">
                 I am a student at <b>Howest</b> pursuing a Bachelor's in <b>Applied Computer Science</b> (expected graduation June 2026). 
                 I have a strong foundation in software engineering principles, with hands-on experience in full-stack development, 
-                cloud infrastructure, and microservices. I am currently looking for an internship opportunity to apply my skills 
-                in a real-world environment.
+                cloud infrastructure, and microservices.
               </p>  
               
               <div className="mt-6">

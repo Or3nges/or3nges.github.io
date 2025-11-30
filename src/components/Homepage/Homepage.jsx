@@ -45,8 +45,7 @@ const Homepage = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="text-textSecondary py-4 max-w-[700px]"
         >
-          I'm a full-stack developer passionate about building accessible, pixel-perfect, and performant web experiences. 
-          Currently seeking a <b>Software Engineering Internship</b> from Feb 2026 to May 2026.
+          I'm a full-stack developer passionate about building accessible, pixel-perfect, and performant web experiences.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
