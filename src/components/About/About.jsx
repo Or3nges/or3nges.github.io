@@ -78,7 +78,7 @@ const About = () => {
               <div className="mt-6">
                  <h3 className="text-accent font-mono mb-2 text-lg">Languages</h3>
                  <p className="text-textSecondary text-sm">
-                   English (Fluent) • Dutch (Fluent) • French (Good) • Nepali (Good)
+                   Dutch (Mother tongue) • English (Fluent) • French (Good)
                  </p>
               </div>
             </motion.div>
