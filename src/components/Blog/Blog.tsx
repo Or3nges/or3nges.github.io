@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { blogs } from "../../data/data";
+import { blogs, Blog as BlogType } from "../../data/data";
 import { FaTimes } from "react-icons/fa";
 
 const Blog = () => {
-  const [selectedBlog, setSelectedBlog] = useState(null);
+  const [selectedBlog, setSelectedBlog] = useState<BlogType | null>(null);
 
   return (
     <section
@@ -62,7 +62,7 @@ const Blog = () => {
         </div>
       </div>
 
-      {/* Blog Modal */}
+      {/*blog card*/}
       <AnimatePresence>
         {selectedBlog && (
           <motion.div

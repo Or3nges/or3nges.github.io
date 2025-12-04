@@ -1,11 +1,35 @@
-const images = import.meta.glob('../assets/**/*.{jpg,png,jpeg,webp}', { eager: true });
+const images = import.meta.glob('../assets/**/*.{jpg,png,jpeg,webp}', { eager: true }) as Record<string, { default: string }>;
 
-const getAsset = (path) => {
+const getAsset = (path: string) => {
   const fullPath = `../assets/${path}`;
   return images[fullPath]?.default;
 };
 
-export const navLinks = [
+export interface NavLink {
+  id: number;
+  link: string;
+}
+
+export interface Project {
+  id: number;
+  title: string;
+  description: string;
+  tech: string[];
+  github: string;
+  live: string;
+  content: string;
+}
+
+export interface Blog {
+  id: number;
+  title: string;
+  date: string;
+  summary: string;
+  content: string;
+  tags: string[];
+}
+
+export const navLinks: NavLink[] = [
   { id: 1, link: 'home' },
   { id: 2, link: 'about' },
   { id: 3, link: 'portfolio' },
@@ -13,7 +37,7 @@ export const navLinks = [
   { id: 5, link: 'contact' },
 ];
 
-export const projects = [
+export const projects: Project[] = [
   {
     id: 1,
     title: "HowestPrime - Cinema Project",
@@ -125,7 +149,7 @@ export const projects = [
   },
 ];
 
-export const blogs = [
+export const blogs: Blog[] = [
   {
     id: 6,
     title: "Tech & Meet: Cyber Security at NATO",

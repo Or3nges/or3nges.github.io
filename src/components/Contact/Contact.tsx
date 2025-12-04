@@ -69,7 +69,7 @@ const Contact = () => {
           `} 
           name="message" 
           id="message" 
-          rows="10" 
+          rows={10} 
           placeholder="Message" 
           aria-label="Message"
         ></textarea>

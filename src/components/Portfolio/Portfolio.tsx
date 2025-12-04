@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaFolder, FaTimes } from 'react-icons/fa';
-import { projects } from '../../data/data';
+import { FaGithub, /*FaExternalLinkAlt,*/ FaFolder, FaTimes } from 'react-icons/fa';
+import { projects, Project } from '../../data/data';
 
 const Portfolio = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
     <div id="portfolio" className="w-full py-16 text-textPrimary bg-primary">
@@ -92,7 +92,7 @@ const Portfolio = () => {
         </div>
       </div>
 
-      {/* Project Modal */}
+      {/* project card */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
