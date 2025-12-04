@@ -1,10 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { blogs, Blog as BlogType } from "../../data/data";
 import { FaTimes } from "react-icons/fa";
 
+const extractImageUrls = (html: string): string[] => {
+  const imgRegex = /src="([^"]+)"/g;
+  const urls: string[] = [];
+  let match;
+  while ((match = imgRegex.exec(html)) !== null) {
+    urls.push(match[1]);
+  }
+  return urls;
+};
+
+const preloadImages = (urls: string[]): void => {
+  urls.forEach((url) => {
+    const img = new Image();
+    img.src = url;
+  });
+};
+
 const Blog = () => {
   const [selectedBlog, setSelectedBlog] = useState<BlogType | null>(null);
+
+  useEffect(() => {
+    blogs.forEach((blog) => {
+      const imageUrls = extractImageUrls(blog.content);
+      preloadImages(imageUrls);
+    });
+  }, []);
 
   return (
     <section
