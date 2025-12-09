@@ -20,8 +20,12 @@ const preloadImages = (urls: string[]): void => {
   });
 };
 
+const BLOGS_PER_PAGE = 6;
+
 const Blog = () => {
   const [selectedBlog, setSelectedBlog] = useState<BlogType | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState<"Tech & Meet" | "Personal" | null>(null);
 
   useEffect(() => {
     blogs.forEach((blog) => {
@@ -29,6 +33,19 @@ const Blog = () => {
       preloadImages(imageUrls);
     });
   }, []);
+
+  //Filter
+  const filteredBlogs = selectedCategory
+    ? blogs.filter((blog) => blog.category === selectedCategory)
+    : blogs;
+
+  const totalPages = Math.ceil(filteredBlogs.length / BLOGS_PER_PAGE);
+  const startIndex = (currentPage - 1) * BLOGS_PER_PAGE;
+  const paginatedBlogs = filteredBlogs.slice(startIndex, startIndex + BLOGS_PER_PAGE);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory]);
 
   return (
     <section
@@ -41,13 +58,52 @@ const Blog = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ amount: 0.2 }}
-          className="text-4xl md:text-5xl font-bold mb-12 text-center"
+          className="text-4xl md:text-5xl font-bold mb-8 text-center"
         >
           <span className="text-accent">Blog</span> & Thoughts
         </motion.h2>
 
+        {/* Tag Filter */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-wrap justify-center gap-2 mb-12"
+        >
+          <button
+            onClick={() => setSelectedCategory(null)}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              selectedCategory === null
+                ? "bg-accent text-primary"
+                : "bg-bgSecondary text-textSecondary hover:text-accent hover:border-accent border border-transparent"
+            }`}
+          >
+            All
+          </button>
+          <button
+            onClick={() => setSelectedCategory("Tech & Meet")}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              selectedCategory === "Tech & Meet"
+                ? "bg-accent text-primary"
+                : "bg-bgSecondary text-textSecondary hover:text-accent hover:border-accent border border-transparent"
+            }`}
+          >
+            Tech & Meet
+          </button>
+          <button
+            onClick={() => setSelectedCategory("Personal")}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              selectedCategory === "Personal"
+                ? "bg-accent text-primary"
+                : "bg-bgSecondary text-textSecondary hover:text-accent hover:border-accent border border-transparent"
+            }`}
+          >
+            Personal
+          </button>
+        </motion.div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogs.map((blog, index) => (
+          {paginatedBlogs.map((blog, index) => (
             <motion.div
               key={blog.id}
               initial={{ opacity: 0, y: 20 }}
@@ -84,6 +140,30 @@ const Blog = () => {
             </motion.div>
           ))}
         </div>
+
+        {/*pagination*/}
+        {totalPages > 1 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex justify-center items-center gap-2 mt-12"
+          >
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <button
+                key={page}
+                onClick={() => setCurrentPage(page)}
+                className={`w-10 h-10 rounded-lg font-semibold transition-all ${
+                  currentPage === page
+                    ? "bg-accent text-primary"
+                    : "bg-bgSecondary text-textSecondary hover:bg-accent/20 hover:text-accent"
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+          </motion.div>
+        )}
       </div>
 
       {/*blog card*/}
