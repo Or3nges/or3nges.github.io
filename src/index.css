@@ -10,11 +10,16 @@
   --accent: #64ffda;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--primary);
   color: var(--text-primary);
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 

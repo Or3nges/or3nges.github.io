@@ -20,11 +20,8 @@ const preloadImages = (urls: string[]): void => {
   });
 };
 
-const BLOGS_PER_PAGE = 6;
-
 const Blog = () => {
   const [selectedBlog, setSelectedBlog] = useState<BlogType | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState<"Tech & Meet" | "Personal" | null>(null);
 
   useEffect(() => {
@@ -38,14 +35,6 @@ const Blog = () => {
   const filteredBlogs = selectedCategory
     ? blogs.filter((blog) => blog.category === selectedCategory)
     : blogs;
-
-  const totalPages = Math.ceil(filteredBlogs.length / BLOGS_PER_PAGE);
-  const startIndex = (currentPage - 1) * BLOGS_PER_PAGE;
-  const paginatedBlogs = filteredBlogs.slice(startIndex, startIndex + BLOGS_PER_PAGE);
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [selectedCategory]);
 
   return (
     <section
@@ -102,69 +91,48 @@ const Blog = () => {
           </button>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {paginatedBlogs.map((blog, index) => (
-            <motion.div
-              key={blog.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ amount: 0.2 }}
-              onClick={() => setSelectedBlog(blog)}
-              className="bg-bgSecondary p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow transition-colors duration-300 cursor-pointer border border-transparent hover:border-accent group h-full flex flex-col"
-            >
-              <div className="flex justify-between items-center mb-4 text-sm text-textSecondary">
-                <span>{blog.date}</span>
-                <div className="flex gap-2">
-                  {blog.tags.slice(0, 2).map((tag) => (
-                    <span key={tag} className="bg-bgPrimary px-2 py-1 rounded text-xs text-accent">
-                      {tag}
+        {/* Blog Grid */}
+        <div className="h-[700px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredBlogs.map((blog, index) => (
+                <motion.div
+                  key={blog.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ amount: 0.2 }}
+                  onClick={() => setSelectedBlog(blog)}
+                  className="bg-bgSecondary p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow transition-colors duration-300 cursor-pointer border border-transparent hover:border-accent group flex flex-col self-start"
+                >
+                  <div className="flex justify-between items-center mb-4 text-sm text-textSecondary">
+                    <span>{blog.date}</span>
+                    <div className="flex gap-2">
+                      {blog.tags.slice(0, 2).map((tag) => (
+                        <span key={tag} className="bg-bgPrimary px-2 py-1 rounded text-xs text-accent">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors">
+                    {blog.title}
+                  </h3>
+                  
+                  <p className="text-textSecondary mb-4 line-clamp-3 flex-grow">
+                    {blog.summary}
+                  </p>
+
+                  <div className="mt-auto pt-4 border-t border-gray-700">
+                    <span className="text-accent text-sm font-medium group-hover:underline">
+                      Read more →
                     </span>
-                  ))}
-                </div>
-              </div>
-              
-              <h3 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors">
-                {blog.title}
-              </h3>
-              
-              <p className="text-textSecondary mb-4 line-clamp-3 flex-grow">
-                {blog.summary}
-              </p>
-
-              <div className="mt-auto pt-4 border-t border-gray-700">
-                <span className="text-accent text-sm font-medium group-hover:underline">
-                  Read more →
-                </span>
-              </div>
-            </motion.div>
-          ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
-
-        {/*pagination*/}
-        {totalPages > 1 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex justify-center items-center gap-2 mt-12"
-          >
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-              <button
-                key={page}
-                onClick={() => setCurrentPage(page)}
-                className={`w-10 h-10 rounded-lg font-semibold transition-all ${
-                  currentPage === page
-                    ? "bg-accent text-primary"
-                    : "bg-bgSecondary text-textSecondary hover:bg-accent/20 hover:text-accent"
-                }`}
-              >
-                {page}
-              </button>
-            ))}
-          </motion.div>
-        )}
-      </div>
 
       {/*blog card*/}
       <AnimatePresence>
