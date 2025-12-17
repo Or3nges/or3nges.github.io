@@ -27,6 +27,7 @@ export interface Blog {
   summary: string;
   content: string;
   tags: string[];
+  category: "Tech & Meet" | "Personal";
 }
 
 export const navLinks: NavLink[] = [
@@ -151,6 +152,41 @@ export const projects: Project[] = [
 
 export const blogs: Blog[] = [
   {
+    id: 7,
+    title: "Tech & Meet: DeepSeek?!",
+    date: "December 9, 2025",
+    summary: "Exploring DeepSeek, the open-source AI alternative to GPT-4 and Claude. Live demos, real-world applications, and critical reflections on the global AI race.",
+    content: `
+      <p>In the rapidly evolving AI landscape of 2025, <strong>DeepSeek</strong> has emerged as one of the most talked-about open-source alternatives to GPT-4 and Claude. Developed in China, DeepSeek offers multimodal and code-focused models that rival top proprietary systems in benchmarks while remaining transparent and accessible.</p>
+      <br/>
+      <h3 class="text-xl font-bold text-textPrimary mb-2">What We Explored</h3>
+      <p>In this session with <strong>Dimitri Casier</strong>, Lector of Software Development and AI at Howest, we dove deep into:</p>
+      <ul class="list-disc list-inside mt-2 space-y-2 text-textSecondary">
+        <li><strong>What is DeepSeek?</strong> Understanding the model architecture and how it compares to leading AI systems like GPT-4 and Claude.</li>
+        <li><strong>Benchmarks & Performance:</strong> DeepSeek's impressive results in reasoning, code generation, and multimodal tasks.</li>
+        <li><strong>Live Demonstrations:</strong> Seeing DeepSeek in action with real-world use cases and applications.</li>
+        <li><strong>Real-World Applications:</strong> How DeepSeek is being used in business, education, research, and beyond.</li>
+        <li><strong>Ethics & Transparency:</strong> Critical discussions on open-source AI, accessibility, and geopolitical implications.</li>
+      </ul>
+      <br/>
+      <h3 class="text-xl font-bold text-textPrimary mb-2">A Memorable Opening</h3>
+      <p>Dimitri started the session in an unconventional way with a clip of himself performing at a concert. It was a creative way to illustrate a profound point: the connection between human creativity and artificial intelligence. Just as music requires rhythm, harmony, and structure, so too does language modeling. The parallel between composing music and building LLMs highlighted how AI isn't just about algorithms; it's about understanding the deeper patterns of human expression and thought.</p>
+      <br/>
+      <h3 class="text-xl font-bold text-textPrimary mb-2">The Bigger Picture</h3>
+      <p>What struck me most was the emphasis on <strong>openness and accessibility</strong>. DeepSeek represents a shift in the AI landscape, where cutting-edge models are no longer locked behind corporate walls. This democratization of AI has profound implications for developers, researchers, and businesses worldwide.</p>
+      <p class="mt-2">The geopolitical angle cannot be ignored. As DeepSeek gains traction, it challenges the Western dominance in AI development and raises important questions about innovation, competition, and collaboration in the global tech ecosystem.</p>
+      <br/>
+      <h3 class="text-xl font-bold text-textPrimary mb-2">Is DeepSeek a Game-Changer?</h3>
+      <p>After this session, I'm convinced it's more than just another AI tool. DeepSeek represents a turning point in how we think about AI development, ownership, and access. Whether you're a developer looking for powerful open-source alternatives, a business evaluating AI solutions, or simply curious about the future of AI, DeepSeek deserves your attention.</p>
+      <p class="mt-2">The AI landscape in 2025 is more competitive, more open, and more exciting than ever before.</p>
+      <br/>
+      <h3 class="text-xl font-bold text-textPrimary mb-2">About the Speaker</h3>
+      <p><strong>Dimitri Casier</strong> is a Lector of Software Development and AI at Howest Bruges. His unique approach to teaching, combining technical depth with creative analogies, makes complex AI concepts accessible and engaging. His passion for open-source AI and its potential to reshape the tech industry is evident in everything he does.</p>
+    `,
+    tags: ["DeepSeek", "AI", "OpenSource", "LLM"],
+    category: "Tech & Meet"
+  },
+  {
     id: 6,
     title: "Tech & Meet: Cyber Security at NATO",
     date: "December 2, 2025",
@@ -194,7 +230,8 @@ export const blogs: Blog[] = [
       <br/>
       <img src="${getAsset('tech&meet/meeting_4/speaker_info.jpg')}" alt="Speaker Info" class="w-full rounded-lg mb-4 shadow-md" />
     `,
-    tags: ["NATO", "CyberSecurity", "AI", "RiskManagement"]
+    tags: ["NATO", "CyberSecurity", "AI", "RiskManagement"],
+    category: "Tech & Meet"
   },
   {
     id: 1,
@@ -227,7 +264,8 @@ export const blogs: Blog[] = [
       </ul>
       <p class="mt-4">Huge thanks to Nico Declerck for making such a technical topic fun and engaging! Looking forward to seeing more adoption of IPv6 in the future.</p>
     `,
-    tags: ["IPv6", "Networking", "Innovation", "Howest"]
+    tags: ["IPv6", "Networking", "Innovation", "Howest"],
+    category: "Tech & Meet"
   },
   {
     id: 2,
@@ -277,7 +315,8 @@ export const blogs: Blog[] = [
       <p>The event was designed to simulate a high-pressure environment, blending technical skills with teamwork under strict time constraints. The venue, right next to the <strong>Antwerp ZOO</strong>, added a unique touch (we even got free access to the zoo during breaks!).</p>
       <p class="mt-2">A big thank you to Hack The Future, Exsertus, and all the participating companies. It was an engaging and educational experience that reminded me why I love this field: the constant challenge to learn, adapt, and solve.</p>
     `,
-    tags: ["HackTheFuture", "CTF", "Coding", "ProblemSolving"]
+    tags: ["HackTheFuture", "CTF", "Coding", "ProblemSolving"],
+    category: "Personal"
   },
   {
     id: 3,
@@ -299,7 +338,8 @@ export const blogs: Blog[] = [
       <p>What I loved most about the talk was the emphasis on <strong>community</strong>. Open-source AI is tearing down the gates. It's not just about sharing code; it's about sharing ideas, datasets, and breakthroughs. It empowers anyone, students, hobbyists, startups, to jump in and start creating.</p>
       <p class="mt-2">Leaving the event, I felt energized. The barrier to entry for AI has never been lower, and the tools are right there, waiting for us to build something cool.</p>
     `,
-    tags: ["AI", "OpenSource", "HuggingFace", "MachineLearning"]
+    tags: ["AI", "OpenSource", "HuggingFace", "MachineLearning"],
+    category: "Tech & Meet"
   },
   {
     id: 4,
@@ -327,7 +367,8 @@ export const blogs: Blog[] = [
       <h3 class="text-xl font-bold text-textPrimary mb-2">Practical Takeaways</h3>
       <p>One specific tool that caught my attention was <strong>URLScan</strong>. I decided to play around with it after the session. It's incredible how much information you can gather just by scanning a URL, server details, IP addresses, and potential malicious behaviors. It gave me a glimpse into the toolkit of a security analyst and has definitely inspired me to look deeper into secure coding practices.</p>
     `,
-    tags: ["ThreatIntelligence", "CyberSecurity", "Networking"]
+    tags: ["ThreatIntelligence", "CyberSecurity", "Networking"],
+    category: "Tech & Meet"
   },
   {
     id: 5,
@@ -343,6 +384,7 @@ export const blogs: Blog[] = [
       <h3 class="text-xl font-bold text-textPrimary">Styling with Tailwind</h3>
       <p>Tailwind CSS speeds up the styling process significantly. Instead of switching between CSS files and JSX, I can apply styles directly, making the development loop much faster.</p>
     `,
-    tags: ["React", "Frontend", "Tailwind"]
+    tags: ["React", "Frontend", "Tailwind"],
+    category: "Personal"
   }
 ];
