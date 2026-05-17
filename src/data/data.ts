@@ -1,4 +1,4 @@
-const images = import.meta.glob('../assets/**/*.{jpg,png,jpeg,webp}', { eager: true }) as Record<string, { default: string }>;
+const images = import.meta.glob('../assets/**/*.{jpg,png,jpeg,webp,mp3}', { eager: true }) as Record<string, { default: string }>;
 
 const getAsset = (path: string) => {
   const fullPath = `../assets/${path}`;
@@ -151,6 +151,36 @@ export const projects: Project[] = [
 ];
 
 export const blogs: Blog[] = [
+  {
+    id: 8,
+    title: "Podcast: What It’s Really Like Building Android Apps at Scale at Tinder",
+    date: "May 17, 2026",
+    summary: "In this podcast for our Professional Networking assignment, we discuss modern Android development at Tinder with guest Mykyta Khamara, exploring large-scale mobile apps, security, and AI.",
+    content: `
+      <p>For our <strong>Professional Networking</strong> assignment, Aaron Ballegeer and I had the incredible opportunity to host a podcast discussing modern Android development.</p>
+      <br/>
+      <h3 class="text-xl font-bold text-textPrimary mb-2">Our Guest: Mykyta Khamara</h3>
+      <p>We were joined by <strong>Mykyta Khamara</strong> to explore what it is really like to build and maintain large-scale mobile applications at Tinder. It was a fascinating deep dive into the world of a tech giant.</p>
+      <br/>
+      <h3 class="text-xl font-bold text-textPrimary mb-2">Key Topics Discussed</h3>
+      <ul class="list-disc list-inside mt-2 space-y-2 text-textSecondary">
+        <li><strong>Large-Scale Apps:</strong> The unique challenges of building and maintaining applications that serve millions of users daily.</li>
+        <li><strong>Mobile Security:</strong> Best practices and strategies for keeping user data safe in a high-stakes environment.</li>
+        <li><strong>The Future of Android:</strong> Insights into where Android engineering is heading next.</li>
+        <li><strong>AI in Software Development:</strong> How Artificial Intelligence is reshaping the tools and processes we use to build mobile software.</li>
+      </ul>
+      <br/>
+      <h3 class="text-xl font-bold text-textPrimary mb-2">Listen to the Podcast</h3>
+      <audio controls class="w-full mb-4">
+        <source src="${getAsset('podcast/Podcast-Tinder-Pratik-Lohani-Aaron-Ballegeer.mp3')}" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <br/>
+      <p>This podcast was an amazing experience, allowing us to connect with an industry professional and gain insights that go far beyond the classroom.</p>
+    `,
+    tags: ["Podcast", "Android", "Tinder", "Networking"],
+    category: "Personal"
+  },
   {
     id: 7,
     title: "Tech & Meet: DeepSeek?!",
